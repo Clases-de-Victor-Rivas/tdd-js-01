@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ejemplo de uso de TDDD</title>
+
+  <link rel="stylesheet" href="jasmine/lib/jasmine-3.7.1/jasmine.css">
+
+  <script src="jasmine/lib/jasmine-3.7.1/jasmine.js"></script>
+  <script src="jasmine/lib/jasmine-3.7.1/jasmine-html.js"></script>
+  <script src="jasmine/lib/jasmine-3.7.1/boot.js"></script>
+
+  <script>
+      function suma(a,b) {
+          return null
+      }
+  </script>
+</head>
+<body>
+    <h1> Ejemplo de uso de TDD con Jasmine para Javascript</h1>
+    <div id="console">        
+    </div>
+
+    <script>
+        describe("Suma", function() {
+            it("Devuelve la suma de dos números", function() {
+                expect(suma(1,2)).toEqual(3);
+            });
+        });
+    </script>
+</body>
+</html>
