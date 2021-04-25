@@ -26,17 +26,13 @@
             || email.includes("..") 
             || email[email.length-1]=="." // Termina en .
             || email[email.length-2]=="."  // El dominio tiene una sola letra
+            || email.split("").reduce((p,t,i)=>p||!caracteresValidos.includes(t),false) // No debe contener caracteres no válidos
           ) return false
-
-          // No debe contener caracteres no válidos
-          var caracterInvalido=false
-          for( var i=0; i<email.length; ++i ) {
-              if( !caracteresValidos.includes( email[i] ) ) return false
-          }
 
           // No contiene . tras la @
           var subcadenas=email.split("@")
           if( !subcadenas[subcadenas.length-1].includes(".")) return false
+
 
           return true
       }
@@ -66,7 +62,7 @@
                 expect(emailIsValid(".@")).toEqual( false )  // No empieza por letra o número
             })
             it("debería indicar que un email que contiene caracteres no permitidos no es válido", function() {
-                expect(emailIsValid("apañaos@vamos.")).toEqual( false )  // Tiene caracteres no permitidos
+                expect(emailIsValid("apañaos@vamos.todos")).toEqual( false )  // Tiene caracteres no permitidos
             })
             it("debería indicar que un email que contiene @. o .. o .@ no es válido", function() {
                 expect(emailIsValid("una@.cosa")).toEqual( false )  // Contiene @.
@@ -83,8 +79,6 @@
             it("debería indicar que un email cuyo dominio tiene una sola letra no es válido", function() {
                 expect(emailIsValid("un.a@cosa.5")).toEqual( false )  // Termina con una sola letra
             })
-            
-            
             it("debería indicar que un email sin errores es válido", function() {
                 expect(emailIsValid("mi_correo@es.valido")).toEqual( true )  // Es válido
             })
