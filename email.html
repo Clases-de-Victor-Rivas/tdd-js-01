@@ -14,6 +14,7 @@
       function emailIsValid(email) {
           email=email||""
           if( !email.length) return false
+          if( !email.includes("@") ) return false
           return null
       }
   </script>
@@ -26,11 +27,14 @@
     <script>        
         // Variable que necesito para una llamada indefinida
         var tmp
-        describe("Suma", function() {
-            it("debería indicar si un email es válido", function() {
-                expect(emailIsValid("")).toEqual(false)                
-                expect(emailIsValid(tmp)).toEqual(false)
-            });
+        describe("emailIsValid", function() {
+            it("debería indicar que un email vacío no es válido", function() {
+                expect(emailIsValid("")).toEqual(false)   // Cadena vacía                
+                expect(emailIsValid(tmp)).toEqual(false)  // Parámetro no definido
+            })
+            it("debería indicar que un email sin @ o . no es válido", function() {
+                expect(emailIsValid("sinarroba")).toEqual( false )  // Falta la @
+            })
         });
     </script>
 </body>
