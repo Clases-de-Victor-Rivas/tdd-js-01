@@ -13,7 +13,7 @@
   <script>
       function emailIsValid(email) {
           const caracteresInicio="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-          const caracteresValidos=caracteresInicio+"_"
+          const caracteresValidos=caracteresInicio+"_@."
           email=email||""
           // Una cadena vacía NO es válida
           if( !email.length) return false
@@ -29,6 +29,14 @@
 
           // Debe empezar por letra o número
           if( !caracteresInicio.includes( email[0] )) return false
+
+          // No debe contener caracteres no válidos
+          var caracterInvalido=false
+          for( var i=0; i<email.length; ++i ) {
+              caracterInvalido=caracterInvalido || !caracteresValidos.includes( email[i] )
+          }
+          if( caracterInvalido ) return false
+
           return null
       }
   </script>
@@ -55,6 +63,12 @@
             })
             it("debería indicar que un email que no empieza por letra o número no es válido", function() {
                 expect(emailIsValid(".@")).toEqual( false )  // No empieza por letra o número
+            })
+            it("debería indicar que un email que contiene caracteres no permitidos no es válido", function() {
+                expect(emailIsValid("apañaos@vamos.")).toEqual( false )  // Tiene caracteres no permitidos
+            })
+            it("debería indicar que un email que contiene @. o .. o .@ no es válido", function() {
+                expect(emailIsValid("una@a.cosa")).toEqual( false )  // Contiene @.
             })
             
             
