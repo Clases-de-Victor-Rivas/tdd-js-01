@@ -33,9 +33,8 @@
           // No debe contener caracteres no válidos
           var caracterInvalido=false
           for( var i=0; i<email.length; ++i ) {
-              caracterInvalido=caracterInvalido || !caracteresValidos.includes( email[i] )
+              if( !caracteresValidos.includes( email[i] ) ) return false
           }
-          if( caracterInvalido ) return false
 
           // No debe contener @., ni .@ ni ..
           if( email.includes("@.")) return false
