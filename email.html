@@ -11,27 +11,20 @@
   <script src="jasmine/lib/jasmine-3.7.1/boot.js"></script>
 
   <script>
-      function suma(a,b) {
-          b=b||0
-          a=a||0
-          return a+b
+      function emailIsValid(email) {
+          return null
       }
   </script>
 </head>
 <body>
-    <h1> Ejemplo de uso de TDD con Jasmine para Javascript</h1>
+    <h1> Segundo ejemplo de uso de TDD con Jasmine para Javascript</h1>
     <div id="console">        
     </div>
 
-    <script>
-        // Defino las variables p y q para poder probar valores indefinidos
-        var p,q
+    <script>        
         describe("Suma", function() {
-            it("debería devolver la suma de dos números", function() {
-                expect(suma(4,6)).toEqual(10)
-                expect(suma(2)).toEqual(2)
-                expect(suma(p,5)).toEqual(5)
-                expect(suma(p,q)).toEqual(0)
+            it("debería indicar si un email es válido", function() {
+                expect("").toEqual(false)
             });
         });
     </script>
