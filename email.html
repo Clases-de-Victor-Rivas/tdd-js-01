@@ -12,9 +12,23 @@
 
   <script>
       function emailIsValid(email) {
+          const caracteresInicio="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+          const caracteresValidos=caracteresInicio+"_"
           email=email||""
+          // Una cadena vacía NO es válida
           if( !email.length) return false
+
+          // Una cadena sin @ No es válida
           if( !email.includes("@") ) return false
+
+          // Una cadena sin . NO es válida
+          if( !email.includes(".")) return false
+
+          // Una cadena con muchas @ no es válida
+          if( email.split("@").length>2 ) return false
+
+          // Debe empezar por letra o número
+          if( !caracteresInicio.includes( email[0] )) return false
           return null
       }
   </script>
@@ -34,7 +48,16 @@
             })
             it("debería indicar que un email sin @ o . no es válido", function() {
                 expect(emailIsValid("sinarroba")).toEqual( false )  // Falta la @
+                expect(emailIsValid("sinarroba@miamol")).toEqual( false )  // Falta el .
             })
+            it("debería indicar que un email con más de una @ no es válido", function() {
+                expect(emailIsValid("con@varias@arrobas")).toEqual( false )  // Demasiadas @
+            })
+            it("debería indicar que un email que no empieza por letra o número no es válido", function() {
+                expect(emailIsValid(".@")).toEqual( false )  // No empieza por letra o número
+            })
+            
+            
         });
     </script>
 </body>
