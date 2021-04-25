@@ -25,6 +25,7 @@
             || email.includes(".@")
             || email.includes("..") 
             || email[email.length-1]=="." // Termina en .
+            || email[email.length-2]=="."  // El dominio tiene una sola letra
           ) return false
 
           // No debe contener caracteres no válidos
@@ -36,12 +37,6 @@
           // No contiene . tras la @
           var subcadenas=email.split("@")
           if( !subcadenas[subcadenas.length-1].includes(".")) return false
-          
-
-          // El dominio contiene una sola letra
-          var subcadenas=email.split(".")
-          if( subcadenas[subcadenas.length-1].length<2 ) return false
-
 
           return true
       }
@@ -85,7 +80,7 @@
                 expect(emailIsValid("un.a@cosa.")).toEqual( false )  // Termina en .
             })
             
-            it("debería indicar que un email que con una sola letra no es válido", function() {
+            it("debería indicar que un email cuyo dominio tiene una sola letra no es válido", function() {
                 expect(emailIsValid("un.a@cosa.5")).toEqual( false )  // Termina con una sola letra
             })
             
