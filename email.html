@@ -49,6 +49,11 @@
           // Termina en .
           if( email[email.length-1]=="." ) return false;
 
+          // El dominio contiene una sola letra
+          var subcadenas=email.split(".")
+          if( email[email.length-1].length<2 ) return false
+
+
           return true
       }
   </script>
@@ -90,6 +95,11 @@
             it("debería indicar que un email que termina en . no es válido", function() {
                 expect(emailIsValid("un.a@cosa.")).toEqual( false )  // Termina en .
             })
+            
+            it("debería indicar que un email que con una sola letra no es válido", function() {
+                expect(emailIsValid("un.a@cosa.5")).toEqual( false )  // Termina con una sola letra
+            })
+            
             
             it("debería indicar que un email sin errores es válido", function() {
                 expect(emailIsValid("mi_correo@es.valido")).toEqual( true )  // Es válido
