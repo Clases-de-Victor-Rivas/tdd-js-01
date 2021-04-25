@@ -15,20 +15,17 @@
           const caracteresInicio="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
           const caracteresValidos=caracteresInicio+"_@."
           email=email||""
-          // Una cadena vacía NO es válida
-          if( !email.length) return false
-
-          // Una cadena sin @ No es válida
-          if( !email.includes("@") ) return false
-
-          // Una cadena sin . NO es válida
-          if( !email.includes(".")) return false
-
-          // Una cadena con muchas @ no es válida
-          if( email.split("@").length>2 ) return false
-
-          // Debe empezar por letra o número
-          if( !caracteresInicio.includes( email[0] )) return false
+          
+          if( !email.length // Una cadena vacía NO es válida
+            || !email.includes("@") // Una cadena sin @ No es válida
+            || !email.includes(".") // Una cadena sin . NO es válida
+            || email.split("@").length>2 // Una cadena con muchas @ no es válida
+            || !caracteresInicio.includes(email[0]) // Debe empezar por letra o número
+            || email.includes("@.")  // No debe contener @., ni .@ ni ..
+            || email.includes(".@")
+            || email.includes("..") 
+            || email[email.length-1]=="." // Termina en .
+          ) return false
 
           // No debe contener caracteres no válidos
           var caracterInvalido=false
@@ -36,17 +33,10 @@
               if( !caracteresValidos.includes( email[i] ) ) return false
           }
 
-          // No debe contener @., ni .@ ni ..
-          if( email.includes("@.")) return false
-          if( email.includes(".@")) return false
-          if( email.includes("..")) return false
-
           // No contiene . tras la @
           var subcadenas=email.split("@")
           if( !subcadenas[subcadenas.length-1].includes(".")) return false
           
-          // Termina en .
-          if( email[email.length-1]=="." ) return false;
 
           // El dominio contiene una sola letra
           var subcadenas=email.split(".")
