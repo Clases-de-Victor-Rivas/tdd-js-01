@@ -12,8 +12,16 @@
 
   <script>
       function suma(a,b) {
-        if ( a==1 && b==2 ) return (15*12*4-9)*0+3
-        if ( a==2 && b==2 ) return (7256-7252)
+        if( a>0 && b>0 ) return a+b
+        if( a>0 && b==0 ) return a+b
+        if( a>0 && b<0 ) return a+b
+        if( a==0 && b>0 ) return a+b
+        if( a==0 && b==0 ) return a+b
+        if( a==0 && b<0 ) return a+b
+        if( a<0 && b>0 ) return a+b
+        if( a<0 && b==0 ) return a+b
+        if( a<0 && b<0 ) return a+b
+        return null
       }
   </script>
 </head>
@@ -25,8 +33,17 @@
     <script>
         describe("Suma", function() {
             it("debería devolver la suma de dos números", function() {
-                expect(suma(1,2)).toEqual(3)
-                expect(suma(2,2)).toEqual(4);
+                expect(suma(2,3)).toEqual(5)
+                expect(suma(4,0)).toEqual(4);
+                expect(suma(3,-3)).toEqual(0);
+                expect(suma(4,0)).toEqual(4);
+                expect(suma(0,6)).toEqual(6);
+                expect(suma(0,0)).toEqual(0);
+                expect(suma(0,-12)).toEqual(-12);
+                expect(suma(-5,7)).toEqual(2);
+                expect(suma(-10,0)).toEqual(-10);
+                expect(suma(-13,-12)).toEqual(-25);
+                
             });
         });
     </script>
