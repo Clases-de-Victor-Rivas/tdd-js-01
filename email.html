@@ -12,7 +12,7 @@
 
   <script>
       function emailIsValid(email) {
-          if( !email) return false
+          if( !email.length) return false
           return null
       }
   </script>
@@ -23,9 +23,11 @@
     </div>
 
     <script>        
+        // Variable que necesito para una llamada indefinida
+        var tmp
         describe("Suma", function() {
             it("debería indicar si un email es válido", function() {
-                expect(emailIsValid("")).toEqual(false)
+                expect(emailIsValid("")).toEqual(false)                
             });
         });
     </script>
