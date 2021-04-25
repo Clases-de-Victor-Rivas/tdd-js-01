@@ -51,7 +51,7 @@
 
           // El dominio contiene una sola letra
           var subcadenas=email.split(".")
-          if( email[email.length-1].length<2 ) return false
+          if( subcadenas[subcadenas.length-1].length<2 ) return false
 
 
           return true
